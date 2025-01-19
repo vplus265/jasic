@@ -1,0 +1,87 @@
+' VPlus265 said:
+' - This program took me more time than
+'   than I expected, maybe it is because I am not LowLevel ;)
+
+n = 15
+print "Diamond with height:" + n + "\n"
+
+' First triangle (growing)
+spaces = n
+stars = 1
+row = 1
+
+goto topTriangle
+
+topTriangle:
+    if row > n then endTopTriangle
+    
+    'Print spaces
+    spaceCount = 1
+    goto printSpaces
+    endPrintSpaces:
+    
+    'Print stars
+    starCount = 1
+    goto printStars
+    
+    endPrintStars:  
+    print "\n"  ' New line
+    spaces = spaces - 1
+    stars = stars + 2
+    row = row + 1
+    goto topTriangle
+
+printSpaces:
+    if spaceCount > spaces then endPrintSpaces
+    print " "
+    spaceCount = spaceCount + 1
+    goto printSpaces
+
+printStars:
+    if starCount > stars then endPrintStars
+    print "*"
+    starCount = starCount + 1
+    goto printStars
+
+endTopTriangle:
+
+' Second triangle (shrinking)
+spaces = 1
+stars = (n * 2) - 3
+row = 1
+
+goto bottomTriangle
+
+bottomTriangle:
+    if row < n - 1 then endBottomTriangle
+    
+    ' Print spaces
+    spaceCount = 1
+    goto printBottomSpaces
+    endPrintBottomSpaces:
+    
+    ' Print stars
+    starCount = 1
+    goto printBottomStars
+    
+    endPrintBottomStars:
+    print "\n"  ' New line
+    spaces = spaces + 1
+    stars = stars - 2
+    row = row + 1
+    goto bottomTriangle
+
+printBottomSpaces:
+    if spaceCount > spaces then endPrintBottomSpaces
+    print " "
+    spaceCount = spaceCount + 1
+    goto printBottomSpaces
+
+printBottomStars:
+    if starCount > stars then endPrintBottomStars
+    print "*"
+    starCount = starCount + 1
+    goto printBottomStars
+
+endBottomTriangle:
+print "Diamond complete\n"
